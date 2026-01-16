@@ -1,6 +1,6 @@
 #include "Parser.h"
-#include "../errors/Errors.h"
-#include "../commands/CommandFactory.h"
+#include "../Errors/Errors.h"
+#include "../Commands/CommandFactory.h"
 
 Pipeline Parser::parse(const std::vector<Token>& tokens)
 {
@@ -19,11 +19,11 @@ Pipeline Parser::parse(const std::vector<Token>& tokens)
         while (i < tokens.size() && tokens[i].text != "|")
         {
             if (tokens[i].isQuoted)
-                arguments.emplace_back(tokens[i].text, ArgumentType::String);
+                arguments.emplace_back(tokens[i].text, ArgumentType::Quoted);
             else if (tokens[i].text[0] == '-')
                 arguments.emplace_back(tokens[i].text, ArgumentType::Option);
             else
-                arguments.emplace_back(tokens[i].text, ArgumentType::Filename);
+                arguments.emplace_back(tokens[i].text, ArgumentType::Normal);
             i++;
         }
         if (i < tokens.size() && tokens[i].text == "|")

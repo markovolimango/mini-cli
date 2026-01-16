@@ -6,8 +6,8 @@
 
 enum class ArgumentType
 {
-    Filename,
-    String,
+    Normal,
+    Quoted,
     Option
 };
 

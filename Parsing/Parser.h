@@ -5,8 +5,8 @@
 #include <utility>
 #include <vector>
 #include <string>
-#include "../Lexer.h"
-#include "../commands/Command.h"
+#include "Lexer.h"
+#include "../Commands/Command.h"
 
 struct CommandCall
 {

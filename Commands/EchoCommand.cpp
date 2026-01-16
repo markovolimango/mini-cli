@@ -1,6 +1,7 @@
 #include "EchoCommand.h"
-#include "../errors/Errors.h"
+#include "../Errors/Errors.h"
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 
@@ -39,7 +40,10 @@ void EchoCommand::echoStream(std::istream& in, std::ostream& out)
     while (getline(in, line))
     {
         text.append(line);
-        text.append("\n");
+        if (!in.eof())
+            text.append("\n");
     }
-    out << text;
+    if (&in == &std::cin && &out == &std::cout)
+        out << '\n';
+    out << text << '\n';
 }

@@ -1,5 +1,5 @@
 #include "Lexer.h"
-#include "errors/Errors.h"
+#include "../Errors/Errors.h"
 
 std::vector<Token> Lexer::tokenize(const std::string& line)
 {

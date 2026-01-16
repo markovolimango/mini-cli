@@ -5,7 +5,9 @@
 #include "DateCommand.h"
 #include "EchoCommand.h"
 #include "TimeCommand.h"
-#include "../parser/Argument.h"
+#include "TouchCommand.h"
+#include "WCCommand.h"
+#include "../Parsing/Argument.h"
 
 class CommandFactory
 {
@@ -16,6 +18,8 @@ private:
     static EchoCommand createEchoCommand(const std::vector<Argument>& arguments);
     static TimeCommand createTimeCommand(const std::vector<Argument>& arguments);
     static DateCommand createDateCommand(const std::vector<Argument>& arguments);
+    static TouchCommand createTouchCommand(const std::vector<Argument>& arguments);
+    static WCCommand createWCCommand(const std::vector<Argument>& arguments);
 };
 
 

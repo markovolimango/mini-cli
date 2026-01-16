@@ -1,7 +1,7 @@
 #ifndef CLI_COMMAND_H
 #define CLI_COMMAND_H
 
-#include "../parser/Argument.h"
+#include "../Parsing/Argument.h"
 #include <utility>
 #include <vector>
 #include <istream>
