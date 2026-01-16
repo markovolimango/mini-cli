@@ -18,7 +18,7 @@ WCCommand::WCCommand(const bool countsWords, const std::string& text, const bool
         m_string = text;
 }
 
-void WCCommand::execute(std::istream& in, std::ostream& out, std::ostream& err)
+void WCCommand::execute(std::istream& in, std::ostream& out)
 {
     if (!m_filename.empty())
     {
@@ -48,8 +48,10 @@ void WCCommand::execute(std::istream& in, std::ostream& out, std::ostream& err)
         else
             count = countChars(in);
 
+#ifndef _WIN32
         if (&in == &std::cin && &out == &std::cout)
             out << '\n';
+#endif
         out << count;
     }
     out << '\n';

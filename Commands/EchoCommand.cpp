@@ -13,13 +13,13 @@ EchoCommand::EchoCommand(std::string text, const bool isFilename)
         m_string = std::move(text);
 }
 
-void EchoCommand::execute(std::istream& in, std::ostream& out, std::ostream& err)
+void EchoCommand::execute(std::istream& in, std::ostream& out)
 {
     if (!m_filename.empty())
     {
         auto ifs = std::ifstream(m_filename);
         if (!ifs)
-            throw SemanticError("Fajl \"" + m_filename + "\" ne postoji.");
+            throw OSError("Fajl \"" + m_filename + "\" ne postoji.");
 
         return echoStream(ifs, out);
     }
@@ -30,7 +30,7 @@ void EchoCommand::execute(std::istream& in, std::ostream& out, std::ostream& err
         return echoStream(ss, out);
     }
 
-    return echoStream(in, err);
+    return echoStream(in, out);
 }
 
 
@@ -43,7 +43,11 @@ void EchoCommand::echoStream(std::istream& in, std::ostream& out)
         if (!in.eof())
             text.append("\n");
     }
+
+#ifndef _WIN32
     if (&in == &std::cin && &out == &std::cout)
         out << '\n';
+#endif
+
     out << text << '\n';
 }

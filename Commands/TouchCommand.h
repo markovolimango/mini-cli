@@ -9,7 +9,7 @@ class TouchCommand : public Command
 public:
     explicit TouchCommand(std::string filename);
 
-    void execute(std::istream& in, std::ostream& out, std::ostream& err) override;
+    void execute(std::istream& in, std::ostream& out) override;
 
 private:
     std::string m_filename;

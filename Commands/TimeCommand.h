@@ -6,7 +6,7 @@
 class TimeCommand : public Command
 {
 public:
-    void execute(std::istream& in, std::ostream& out, std::ostream& err) override;
+    void execute(std::istream& in, std::ostream& out) override;
 };
 
 #endif

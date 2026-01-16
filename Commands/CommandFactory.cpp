@@ -14,7 +14,7 @@ std::unique_ptr<Command> CommandFactory::createCommand(const std::string& name, 
     if (name == "wc")
         return std::make_unique<WCCommand>(createWCCommand(arguments));
 
-    throw SyntaxError("Nepostojeca komanda \"" + name + "\".");
+    throw UnknownCommandError("\"" + name + "\".");
 }
 
 EchoCommand CommandFactory::createEchoCommand(const std::vector<Argument>& arguments)
@@ -73,7 +73,7 @@ WCCommand CommandFactory::createWCCommand(const std::vector<Argument>& arguments
     else if (arguments[0].getText() == "-c")
         countsWords = false;
     else
-        throw SyntaxError("Nevalidna opcija.");
+        throw SyntaxError("Nevalidna opcija" + arguments[0].getText() + ".");
 
     if (arguments.size() == 1)
         return {countsWords};

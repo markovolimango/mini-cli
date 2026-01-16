@@ -9,7 +9,7 @@ public:
     WCCommand(bool countsWords);
     WCCommand(bool countsWords, const std::string& text, bool isFilename);
 
-    void execute(std::istream& in, std::ostream& out, std::ostream& err) override;
+    void execute(std::istream& in, std::ostream& out) override;
 
 private:
     bool m_countsWords;

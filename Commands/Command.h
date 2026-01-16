@@ -12,6 +12,6 @@ class Command
 public:
     virtual ~Command() = default;
 
-    virtual void execute(std::istream& in, std::ostream& out, std::ostream& err) = 0;
+    virtual void execute(std::istream& in, std::ostream& out) = 0;
 };
 #endif //CLI_COMMAND_H

@@ -2,7 +2,7 @@
 #include <chrono>
 #include <format>
 
-void DateCommand::execute(std::istream& in, std::ostream& out, std::ostream& err)
+void DateCommand::execute(std::istream& in, std::ostream& out)
 {
     auto now = std::chrono::system_clock::now();
     const std::string date = std::format("{:%d.%m.%Y}", now);

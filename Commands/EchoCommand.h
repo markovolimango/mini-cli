@@ -9,7 +9,7 @@ public:
     EchoCommand() = default;
     explicit EchoCommand(std::string text, bool isFilename);
 
-    void execute(std::istream& in, std::ostream& out, std::ostream& err) override;
+    void execute(std::istream& in, std::ostream& out) override;
 
 private:
     std::string m_filename;

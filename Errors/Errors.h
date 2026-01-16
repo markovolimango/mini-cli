@@ -22,6 +22,15 @@ public:
     }
 };
 
+class UnknownCommandError : public Error
+{
+public:
+    explicit UnknownCommandError(const std::string& message) :
+        Error("Nepoznata komanda: " + message)
+    {
+    }
+};
+
 class SyntaxError : public Error
 {
 public:
