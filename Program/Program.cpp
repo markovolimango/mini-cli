@@ -14,7 +14,7 @@ void Program::run(std::istream& in, std::ostream& out, std::ostream& err)
         {
             auto tokens = Lexer::tokenize(line);
             if (tokens.empty()) continue;
-            auto pipeline = Parser::parse(tokens);
+            auto pipeline = Parser::parseLine(tokens);
             Executor::execute(pipeline);
         }
         catch (std::exception& e) { err << e.what() << "\n"; }

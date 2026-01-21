@@ -2,11 +2,11 @@
 #define CLI_COMMANDFACTORY_H
 
 #include "Command.h"
-#include "DateCommand.h"
-#include "EchoCommand.h"
-#include "TimeCommand.h"
-#include "TouchCommand.h"
-#include "WCCommand.h"
+#include "Types/DateCommand.h"
+#include "Types/EchoCommand.h"
+#include "Types/TimeCommand.h"
+#include "Types/TouchCommand.h"
+#include "Types/WCCommand.h"
 #include "../Parsing/Argument.h"
 #include <memory>
 

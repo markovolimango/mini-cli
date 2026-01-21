@@ -7,8 +7,8 @@ add_executable(CLI
         main.cpp
         commands/Command.h
         Parsing/Argument.h
-        commands/EchoCommand.cpp
-        commands/EchoCommand.h
+        Commands/Types/EchoCommand.cpp
+        Commands/Types/EchoCommand.h
         errors/Errors.h
         Parsing/Lexer.cpp
         Parsing/Lexer.h
@@ -16,16 +16,17 @@ add_executable(CLI
         commands/CommandFactory.h
         Parsing/Parser.cpp
         Parsing/Parser.h
-        commands/TimeCommand.cpp
-        commands/TimeCommand.h
-        commands/DateCommand.cpp
-        commands/DateCommand.h
-        commands/TouchCommand.cpp
-        commands/TouchCommand.h
-        commands/WCCommand.cpp
-        commands/WCCommand.h
+        Commands/Types/TimeCommand.cpp
+        Commands/Types/TimeCommand.h
+        Commands/Types/DateCommand.cpp
+        Commands/Types/DateCommand.h
+        Commands/Types/TouchCommand.cpp
+        Commands/Types/TouchCommand.h
+        Commands/Types/WCCommand.cpp
+        Commands/Types/WCCommand.h
         Program/Executor.h
         Program/Program.cpp
         Program/Program.h
         Program/Executor.cpp
+        Commands/Command.cpp
 )

@@ -1,7 +1,14 @@
 #include "TouchCommand.h"
-#include "../Errors/Errors.h"
+#include "../../Errors/Errors.h"
 #include <filesystem>
 #include <fstream>
+#include <utility>
+
+TouchCommand::TouchCommand(std::string filename) :
+    Command("touch"),
+    m_filename(std::move(filename))
+{
+}
 
 void TouchCommand::execute(std::istream& in, std::ostream& out)
 {

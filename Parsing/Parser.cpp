@@ -2,7 +2,7 @@
 #include "../Errors/Errors.h"
 #include "../Commands/CommandFactory.h"
 
-Pipeline Parser::parse(const std::vector<Token>& tokens)
+Pipeline Parser::parseLine(const std::vector<Token>& tokens)
 {
     size_t i = 0;
     Pipeline pipeline;

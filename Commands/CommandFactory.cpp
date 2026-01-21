@@ -1,5 +1,8 @@
 #include "CommandFactory.h"
+#include <fstream>
+#include <sstream>
 #include "../Errors/Errors.h"
+#include <vector>
 
 std::unique_ptr<Command> CommandFactory::createCommand(const std::string& name, const std::vector<Argument>& arguments)
 {
@@ -22,14 +25,18 @@ EchoCommand CommandFactory::createEchoCommand(const std::vector<Argument>& argum
     if (arguments.size() > 1)
         throw SyntaxError("Previse argumenata.");
 
+    std::shared_ptr<std::istream> in = nullptr;
     if (arguments.size() == 1)
     {
-        if (arguments[0].getType() == ArgumentType::Option)
-            throw SyntaxError("Kommanda ne podrzava opcije.");
-        return EchoCommand(arguments[0].getText(), arguments[0].getType() == ArgumentType::Normal);
+        const auto& arg = arguments[0];
+        if (arg.getType() == ArgumentType::Normal)
+            in = std::make_shared<std::ifstream>(arg.getText());
+        else if (arg.getType() == ArgumentType::Quoted)
+            in = std::make_shared<std::istringstream>(arg.getText());
+        else
+            throw SyntaxError("Nevalidan tip argumenta.");
     }
-
-    return {};
+    return EchoCommand(in);
 }
 
 TimeCommand CommandFactory::createTimeCommand(const std::vector<Argument>& arguments)
@@ -37,7 +44,7 @@ TimeCommand CommandFactory::createTimeCommand(const std::vector<Argument>& argum
     if (!arguments.empty())
         throw SyntaxError("Previse argumenata.");
 
-    return {};
+    return TimeCommand();
 }
 
 DateCommand CommandFactory::createDateCommand(const std::vector<Argument>& arguments)
@@ -45,7 +52,7 @@ DateCommand CommandFactory::createDateCommand(const std::vector<Argument>& argum
     if (!arguments.empty())
         throw SyntaxError("Previse argumenata.");
 
-    return {};
+    return DateCommand();
 }
 
 TouchCommand CommandFactory::createTouchCommand(const std::vector<Argument>& arguments)
@@ -64,23 +71,27 @@ WCCommand CommandFactory::createWCCommand(const std::vector<Argument>& arguments
     if (arguments.empty() || arguments.size() > 2)
         throw SyntaxError("Nevalidan broj argumenata.");
 
-    bool countsWords;
     if (arguments[0].getType() != ArgumentType::Option)
         throw SyntaxError("Nevalidan tip argumenta.");
 
+    bool countWords;
     if (arguments[0].getText() == "-w")
-        countsWords = true;
+        countWords = true;
     else if (arguments[0].getText() == "-c")
-        countsWords = false;
+        countWords = false;
     else
         throw SyntaxError("Nevalidna opcija" + arguments[0].getText() + ".");
 
-    if (arguments.size() == 1)
-        return {countsWords};
-    if (arguments[1].getType() == ArgumentType::Normal)
-        return {countsWords, arguments[1].getText(), true};
-    if (arguments[1].getType() == ArgumentType::Quoted)
-        return {countsWords, arguments[1].getText(), false};
-
-    throw SyntaxError("Nevalidan tip argumenta.");
+    std::shared_ptr<std::istream> in = nullptr;
+    if (arguments.size() != 1)
+    {
+        const auto& arg = arguments[1];
+        if (arg.getType() == ArgumentType::Normal)
+            in = std::make_shared<std::ifstream>(arg.getText());
+        else if (arg.getType() == ArgumentType::Quoted)
+            in = std::make_shared<std::istringstream>(arg.getText());
+        else
+            throw SyntaxError("Nevalidan tip argumenta.");
+    }
+    return WCCommand(countWords, in);
 }

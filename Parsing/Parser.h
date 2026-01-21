@@ -25,7 +25,7 @@ struct Pipeline
 class Parser
 {
 public:
-    static Pipeline parse(const std::vector<Token>& tokens);
+    static Pipeline parseLine(const std::vector<Token>& tokens);
 };
 
 

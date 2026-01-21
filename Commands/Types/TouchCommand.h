@@ -1,7 +1,7 @@
 #ifndef CLI_TOUCHCOMMAND_H
 #define CLI_TOUCHCOMMAND_H
 
-#include "Command.h"
+#include "../Command.h"
 #include <utility>
 
 class TouchCommand : public Command
@@ -14,11 +14,5 @@ public:
 private:
     std::string m_filename;
 };
-
-
-inline TouchCommand::TouchCommand(std::string filename) :
-    m_filename(std::move(filename))
-{
-}
 
 #endif
