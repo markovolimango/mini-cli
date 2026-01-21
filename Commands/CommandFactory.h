@@ -8,6 +8,7 @@
 #include "TouchCommand.h"
 #include "WCCommand.h"
 #include "../Parsing/Argument.h"
+#include <memory>
 
 class CommandFactory
 {
