@@ -6,20 +6,21 @@
 #include <vector>
 #include <string>
 #include "Lexer.h"
-#include "../Commands/Command.h"
+#include "../Commands/Base/Command.h"
 
 struct CommandCall
 {
     std::unique_ptr<Command> command;
-    std::string inRedirect;
-    std::string outRedirect;
+    std::shared_ptr<std::istream> inRedirect;
+    std::shared_ptr<std::ostream> outRedirect;
 
-    CommandCall(std::unique_ptr<Command> command, std::string inRedirect, std::string outRedirect);
+    CommandCall(std::unique_ptr<Command> command, std::shared_ptr<std::istream> inRedirect,
+                std::shared_ptr<std::ostream> outRedirect);
 };
 
 struct Pipeline
 {
-    std::vector<CommandCall> commands;
+    std::vector<CommandCall> commandCalls;
 };
 
 class Parser
@@ -29,10 +30,11 @@ public:
 };
 
 
-inline CommandCall::CommandCall(std::unique_ptr<Command> command, std::string inRedirect, std::string outRedirect) :
+inline CommandCall::CommandCall(std::unique_ptr<Command> command, std::shared_ptr<std::istream> inRedirect,
+                                std::shared_ptr<std::ostream> outRedirect) :
     command(std::move(command)),
-    inRedirect(std::move(inRedirect)),
-    outRedirect(std::move(outRedirect))
+    inRedirect(inRedirect),
+    outRedirect(outRedirect)
 {
 }
 

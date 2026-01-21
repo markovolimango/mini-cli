@@ -1,7 +1,7 @@
 #ifndef CLI_TOUCHCOMMAND_H
 #define CLI_TOUCHCOMMAND_H
 
-#include "../Command.h"
+#include "Base/Command.h"
 #include <utility>
 
 class TouchCommand : public Command

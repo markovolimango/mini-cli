@@ -6,7 +6,7 @@
 class Program
 {
 public:
-    static void run(std::istream& in, std::ostream& out, std::ostream& err);
+    static void run(std::istream& inCmd, std::istream& inData, std::ostream& out, std::ostream& err);
 };
 
 

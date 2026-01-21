@@ -1,6 +1,6 @@
 #include "Command.h"
 #include <utility>
-#include  "../Errors/Errors.h"
+#include "../../Errors/Errors.h"
 
 Command::Command(std::string name) :
     m_name(std::move(name))

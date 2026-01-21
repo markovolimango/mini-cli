@@ -5,28 +5,31 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(CLI
         main.cpp
-        commands/Command.h
-        Parsing/Argument.h
-        Commands/Types/EchoCommand.cpp
-        Commands/Types/EchoCommand.h
+        Commands/Base/Command.h
+        Parsing/Token.h
+        Commands/EchoCommand.cpp
+        Commands/EchoCommand.h
         errors/Errors.h
         Parsing/Lexer.cpp
         Parsing/Lexer.h
-        commands/CommandFactory.cpp
-        commands/CommandFactory.h
+        Commands/Factory/CommandFactory.cpp
+        Commands/Factory/CommandFactory.h
         Parsing/Parser.cpp
         Parsing/Parser.h
-        Commands/Types/TimeCommand.cpp
-        Commands/Types/TimeCommand.h
-        Commands/Types/DateCommand.cpp
-        Commands/Types/DateCommand.h
-        Commands/Types/TouchCommand.cpp
-        Commands/Types/TouchCommand.h
-        Commands/Types/WCCommand.cpp
-        Commands/Types/WCCommand.h
+        Commands/TimeCommand.cpp
+        Commands/TimeCommand.h
+        Commands/DateCommand.cpp
+        Commands/DateCommand.h
+        Commands/TouchCommand.cpp
+        Commands/TouchCommand.h
+        Commands/WCCommand.cpp
+        Commands/WCCommand.h
         Program/Executor.h
         Program/Program.cpp
         Program/Program.h
         Program/Executor.cpp
-        Commands/Command.cpp
+        Commands/Base/Command.cpp
+        Parsing/Token.cpp
+        Commands/BatchCommand.cpp
+        Commands/BatchCommand.h
 )

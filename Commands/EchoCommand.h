@@ -1,7 +1,7 @@
 #ifndef CLI_ECHOCOMMAND_H
 #define CLI_ECHOCOMMAND_H
 
-#include "../Command.h"
+#include "Base/Command.h"
 
 class EchoCommand : public InputOutputCommand
 {

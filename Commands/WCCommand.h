@@ -1,7 +1,7 @@
 #ifndef CLI_WCCOMMAND_H
 #define CLI_WCCOMMAND_H
 
-#include "../Command.h"
+#include "Base/Command.h"
 
 class WCCommand : public InputOutputCommand
 {

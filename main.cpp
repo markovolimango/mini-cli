@@ -3,6 +3,6 @@
 
 int main()
 {
-    Program::run(std::cin, std::cout, std::cerr);
+    Program::run(std::cin, std::cin, std::cout, std::cerr);
     return 0;
 }

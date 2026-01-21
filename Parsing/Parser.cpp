@@ -1,6 +1,7 @@
 #include "Parser.h"
+#include <fstream>
 #include "../Errors/Errors.h"
-#include "../Commands/CommandFactory.h"
+#include "../Commands/Factory/CommandFactory.h"
 
 Pipeline Parser::parseLine(const std::vector<Token>& tokens)
 {
@@ -9,27 +10,27 @@ Pipeline Parser::parseLine(const std::vector<Token>& tokens)
 
     while (i < tokens.size())
     {
-        if (tokens[i].isQuoted)
-            throw SyntaxError("Ime komande ne moze biti pod navodnicima.");
+        auto name = tokens[i++].getText();
 
-        std::string name = tokens[i].text;
-        i++;
-
-        std::vector<Argument> arguments;
-        while (i < tokens.size() && tokens[i].text != "|")
+        std::vector<Token> arguments;
+        std::shared_ptr<std::istream> inRedirect = nullptr;
+        std::shared_ptr<std::ostream> outRedirect = nullptr;
+        while (i < tokens.size())
         {
-            if (tokens[i].isQuoted)
-                arguments.emplace_back(tokens[i].text, ArgumentType::Quoted);
-            else if (tokens[i].text[0] == '-')
-                arguments.emplace_back(tokens[i].text, ArgumentType::Option);
-            else
-                arguments.emplace_back(tokens[i].text, ArgumentType::Normal);
-            i++;
+            const auto& tok = tokens[i++];
+            if (tok.getType() == TokenType::Pipe)
+                break;
+            if (tok.isArgument())
+                arguments.push_back(tok);
+            else if (tok.getType() == TokenType::InRedirect)
+                inRedirect = std::make_shared<std::ifstream>(tok.getText());
+            else if (tok.getType() == TokenType::OutRedirectTrunc)
+                outRedirect = std::make_shared<std::ofstream>(tok.getText());
+            else if (tok.getType() == TokenType::OutRedirectApp)
+                outRedirect = std::make_shared<std::ofstream>(tok.getText(), std::ios::app);
         }
-        if (i < tokens.size() && tokens[i].text == "|")
-            i++;
 
-        pipeline.commands.emplace_back(CommandFactory::createCommand(name, arguments), "", "");
+        pipeline.commandCalls.emplace_back(CommandFactory::createCommand(name, arguments), inRedirect, outRedirect);
     }
 
     return pipeline;

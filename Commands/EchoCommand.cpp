@@ -1,5 +1,5 @@
 #include "EchoCommand.h"
-#include "../../Errors/Errors.h"
+#include "../Errors/Errors.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -20,9 +20,11 @@ void EchoCommand::execute(std::istream& inDefault, std::ostream& outDefault)
     while (getline(in, line))
     {
         text.append(line);
-        if (!inDefault.eof())
+        if (!in.eof())
             text.append("\n");
     }
+    if (text[text.length() - 1] != '\n')
+        text.push_back('\n');
 
-    out << text << '\n';
+    out << text;
 }

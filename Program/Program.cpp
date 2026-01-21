@@ -3,29 +3,30 @@
 #include "Executor.h"
 #include <string>
 
-void Program::run(std::istream& in, std::ostream& out, std::ostream& err)
+void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, std::ostream& err)
 {
     std::string line;
 
-    std::cout << "$ ";
-    while (std::getline(in, line))
+    if (&inCmd == &std::cin)
+        std::cout << "$ ";
+    while (std::getline(inCmd, line))
     {
         try
         {
-            auto tokens = Lexer::tokenize(line);
+            auto tokens = Lexer::tokenizeLine(line);
             if (tokens.empty()) continue;
             auto pipeline = Parser::parseLine(tokens);
-            Executor::execute(pipeline);
+            Executor::executePipeline(pipeline, inData, out);
         }
         catch (std::exception& e) { err << e.what() << "\n"; }
 
-        if (in.eof())
+        if (inCmd.eof() && &inCmd == &std::cin)
         {
-            in.clear();
-            if (&in == &std::cin)
-                clearerr(stdin);
+            inCmd.clear();
+            clearerr(stdin);
         }
 
-        std::cout << "$ ";
+        if (&inCmd == &std::cin)
+            std::cout << "$ ";
     }
 }

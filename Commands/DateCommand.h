@@ -1,7 +1,7 @@
 #ifndef CLI_DATECOMMAND_H
 #define CLI_DATECOMMAND_H
 
-#include "../Command.h"
+#include "Base/Command.h"
 
 class DateCommand : public OutputCommand
 {
