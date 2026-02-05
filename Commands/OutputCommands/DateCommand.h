@@ -1,7 +1,7 @@
 #ifndef CLI_DATECOMMAND_H
 #define CLI_DATECOMMAND_H
 
-#include "OutputCommand.h"
+#include "IOutputCommand.h"
 
 class DateCommand : public IOutputCommand
 {

@@ -1,7 +1,8 @@
 #include "Parser.h"
 #include <fstream>
 #include "../Errors/Errors.h"
-#include "../CommandFactories/CommandFactory.h"
+#include "../Factories/Registry.h"
+#include "../Factories/IFactory.h"
 
 Pipeline Parser::parseLine(const std::vector<Token>& tokens)
 {
@@ -30,7 +31,9 @@ Pipeline Parser::parseLine(const std::vector<Token>& tokens)
                 outRedirect = std::make_shared<std::ofstream>(tok.getText(), std::ios::app);
         }
 
-        pipeline.commandCalls.emplace_back(CommandFactory::createCommand(name, arguments), inRedirect, outRedirect);
+        auto command = std::move(Registry::getFactory(name)->create(arguments));
+
+        pipeline.commandCalls.emplace_back(std::move(command), inRedirect, outRedirect);
     }
 
     return pipeline;

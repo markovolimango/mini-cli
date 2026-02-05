@@ -1,7 +1,7 @@
 #ifndef CLI_IINPUTOUTPUTCOMMAND_H
 #define CLI_IINPUTOUTPUTCOMMAND_H
 
-#include "../Command.h"
+#include "../ICommand.h"
 
 class IInputOutputCommand : public ICommand
 {

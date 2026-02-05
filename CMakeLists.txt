@@ -5,15 +5,13 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(cli
         main.cpp
-        Commands/Command.h
+        Commands/ICommand.h
         Parsing/Token.h
         Commands/InputOutputCommands/EchoCommand.cpp
         Commands/InputOutputCommands/EchoCommand.h
         errors/Errors.h
         Parsing/Lexer.cpp
         Parsing/Lexer.h
-        CommandFactories/CommandFactory.cpp
-        CommandFactories/CommandFactory.h
         Parsing/Parser.cpp
         Parsing/Parser.h
         Commands/OutputCommands/TimeCommand.cpp
@@ -31,6 +29,19 @@ add_executable(cli
         Parsing/Token.cpp
         Commands/OutputCommands/BatchCommand.cpp
         Commands/OutputCommands/BatchCommand.h
-        Commands/OutputCommands/OutputCommand.h
+        Commands/OutputCommands/IOutputCommand.h
         Commands/InputOutputCommands/IInputOutputCommand.h
+        Factories/Registry.h
+        Factories/IFactory.h
+        Factories/EchoFactory.cpp
+        Factories/EchoFactory.h
+        Factories/TimeFactory.h
+        Factories/DateFactory.h
+        Factories/TouchFactory.cpp
+        Factories/TouchFactory.h
+        Factories/TimeFactory.cpp
+        Factories/DateFactory.cpp
+        Factories/WCFactory.cpp
+        Factories/WCFactory.h
+        Factories/Registry.cpp
 )

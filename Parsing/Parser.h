@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include "Lexer.h"
-#include "../Commands/Command.h"
+#include "../Commands/ICommand.h"
 
 struct CommandCall
 {

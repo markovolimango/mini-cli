@@ -1,7 +1,7 @@
 #ifndef CLI_TIMECOMMAND_H
 #define CLI_TIMECOMMAND_H
 
-#include "OutputCommand.h"
+#include "IOutputCommand.h"
 
 class TimeCommand : public IOutputCommand
 {

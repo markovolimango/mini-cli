@@ -3,7 +3,7 @@
 
 #include <utility>
 
-#include "../Command.h"
+#include "../ICommand.h"
 
 class IOutputCommand : public ICommand
 {
