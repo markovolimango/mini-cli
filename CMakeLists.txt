@@ -3,33 +3,34 @@ project(CLI)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(CLI
+add_executable(cli
         main.cpp
-        Commands/Base/Command.h
+        Commands/Command.h
         Parsing/Token.h
-        Commands/EchoCommand.cpp
-        Commands/EchoCommand.h
+        Commands/InputOutputCommands/EchoCommand.cpp
+        Commands/InputOutputCommands/EchoCommand.h
         errors/Errors.h
         Parsing/Lexer.cpp
         Parsing/Lexer.h
-        Commands/Factory/CommandFactory.cpp
-        Commands/Factory/CommandFactory.h
+        CommandFactories/CommandFactory.cpp
+        CommandFactories/CommandFactory.h
         Parsing/Parser.cpp
         Parsing/Parser.h
-        Commands/TimeCommand.cpp
-        Commands/TimeCommand.h
-        Commands/DateCommand.cpp
-        Commands/DateCommand.h
+        Commands/OutputCommands/TimeCommand.cpp
+        Commands/OutputCommands/TimeCommand.h
+        Commands/OutputCommands/DateCommand.cpp
+        Commands/OutputCommands/DateCommand.h
         Commands/TouchCommand.cpp
         Commands/TouchCommand.h
-        Commands/WCCommand.cpp
-        Commands/WCCommand.h
+        Commands/InputOutputCommands/WCCommand.cpp
+        Commands/InputOutputCommands/WCCommand.h
         Program/Executor.h
         Program/Program.cpp
         Program/Program.h
         Program/Executor.cpp
-        Commands/Base/Command.cpp
         Parsing/Token.cpp
-        Commands/BatchCommand.cpp
-        Commands/BatchCommand.h
+        Commands/OutputCommands/BatchCommand.cpp
+        Commands/OutputCommands/BatchCommand.h
+        Commands/OutputCommands/OutputCommand.h
+        Commands/InputOutputCommands/IInputOutputCommand.h
 )

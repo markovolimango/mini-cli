@@ -1,12 +1,19 @@
 #ifndef CLI_DATECOMMAND_H
 #define CLI_DATECOMMAND_H
 
-#include "Base/Command.h"
+#include "OutputCommand.h"
 
-class DateCommand : public OutputCommand
+class DateCommand : public IOutputCommand
 {
 public:
     explicit DateCommand();
     void execute(std::istream& inDefault, std::ostream& outDefault) override;
 };
+
+
+inline DateCommand::DateCommand()
+    : IOutputCommand("date")
+{
+}
+
 #endif

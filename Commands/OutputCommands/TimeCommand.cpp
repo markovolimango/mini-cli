@@ -2,11 +2,6 @@
 #include <chrono>
 #include <format>
 
-TimeCommand::TimeCommand() :
-    OutputCommand("time")
-{
-}
-
 void TimeCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 {
     auto& out = getOutputStream(outDefault);

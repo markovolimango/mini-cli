@@ -5,7 +5,7 @@
 #include <utility>
 
 TouchCommand::TouchCommand(std::string filename) :
-    Command("touch"),
+    ICommand("touch"),
     m_filename(std::move(filename))
 {
 }

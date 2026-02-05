@@ -1,9 +1,9 @@
 #ifndef CLI_WCCOMMAND_H
 #define CLI_WCCOMMAND_H
 
-#include "Base/Command.h"
+#include "IInputOutputCommand.h"
 
-class WCCommand : public InputOutputCommand
+class WCCommand : public IInputOutputCommand
 {
 public:
     explicit WCCommand(bool countWords, std::shared_ptr<std::istream> in);
@@ -17,5 +17,12 @@ private:
     static unsigned countChars(std::istream& in);
 };
 
+
+inline WCCommand::WCCommand(const bool countsWords, std::shared_ptr<std::istream> in) :
+    IInputOutputCommand("wc"),
+    m_countWords(countsWords)
+{
+    m_in = in;
+}
 
 #endif

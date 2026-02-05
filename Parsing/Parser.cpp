@@ -1,7 +1,7 @@
 #include "Parser.h"
 #include <fstream>
 #include "../Errors/Errors.h"
-#include "../Commands/Factory/CommandFactory.h"
+#include "../CommandFactories/CommandFactory.h"
 
 Pipeline Parser::parseLine(const std::vector<Token>& tokens)
 {

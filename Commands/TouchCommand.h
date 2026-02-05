@@ -1,10 +1,10 @@
 #ifndef CLI_TOUCHCOMMAND_H
 #define CLI_TOUCHCOMMAND_H
 
-#include "Base/Command.h"
+#include "Command.h"
 #include <utility>
 
-class TouchCommand : public Command
+class TouchCommand : public ICommand
 {
 public:
     explicit TouchCommand(std::string filename);

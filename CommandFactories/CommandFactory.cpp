@@ -1,11 +1,11 @@
 #include "CommandFactory.h"
 #include <fstream>
 #include <sstream>
-#include "../../Errors/Errors.h"
+#include "../Errors/Errors.h"
 #include <vector>
-#include "../BatchCommand.h"
+#include "../Commands/OutputCommands/BatchCommand.h"
 
-std::unique_ptr<Command> CommandFactory::createCommand(const std::string& name, const std::vector<Token>& arguments)
+std::unique_ptr<ICommand> CommandFactory::createCommand(const std::string& name, const std::vector<Token>& arguments)
 {
     if (name == "echo")
         return std::make_unique<EchoCommand>(createEchoCommand(arguments));

@@ -6,15 +6,15 @@
 #include <vector>
 #include <string>
 #include "Lexer.h"
-#include "../Commands/Base/Command.h"
+#include "../Commands/Command.h"
 
 struct CommandCall
 {
-    std::unique_ptr<Command> command;
+    std::unique_ptr<ICommand> command;
     std::shared_ptr<std::istream> inRedirect;
     std::shared_ptr<std::ostream> outRedirect;
 
-    CommandCall(std::unique_ptr<Command> command, std::shared_ptr<std::istream> inRedirect,
+    CommandCall(std::unique_ptr<ICommand> command, std::shared_ptr<std::istream> inRedirect,
                 std::shared_ptr<std::ostream> outRedirect);
 };
 
@@ -30,7 +30,7 @@ public:
 };
 
 
-inline CommandCall::CommandCall(std::unique_ptr<Command> command, std::shared_ptr<std::istream> inRedirect,
+inline CommandCall::CommandCall(std::unique_ptr<ICommand> command, std::shared_ptr<std::istream> inRedirect,
                                 std::shared_ptr<std::ostream> outRedirect) :
     command(std::move(command)),
     inRedirect(inRedirect),

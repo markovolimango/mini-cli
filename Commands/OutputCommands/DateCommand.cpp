@@ -2,11 +2,6 @@
 #include <chrono>
 #include <format>
 
-DateCommand::DateCommand()
-    : OutputCommand("date")
-{
-}
-
 void DateCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 {
     std::ostream& out = getOutputStream(outDefault);

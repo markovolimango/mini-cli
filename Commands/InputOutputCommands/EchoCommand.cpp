@@ -1,15 +1,8 @@
 #include "EchoCommand.h"
-#include "../Errors/Errors.h"
+#include "../../Errors/Errors.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
-
-EchoCommand::EchoCommand(std::shared_ptr<std::istream> in) :
-    InputOutputCommand("echo")
-{
-    m_in = in;
-}
 
 void EchoCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 {

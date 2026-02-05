@@ -1,16 +1,8 @@
 #include "WCCommand.h"
-#include "../Errors/Errors.h"
+#include "../../Errors/Errors.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
-
-WCCommand::WCCommand(const bool countsWords, std::shared_ptr<std::istream> in) :
-    InputOutputCommand("wc"),
-    m_countWords(countsWords)
-{
-    m_in = in;
-}
 
 void WCCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 {
