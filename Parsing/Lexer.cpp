@@ -32,6 +32,12 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
             if (i >= line.length())
                 throw LexicalError("Prazna redirekcija");
 
+            if (line[i] == '>')
+            {
+                text.push_back(line[i++]);
+                readUntil(line, i, [](const char c) { return !isWhitespace(c); });
+            }
+
             text.append(readUntil(line, i, [](const char c) { return isWhitespace(c); }));
 
             tokens.emplace_back(text);
@@ -67,7 +73,7 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
 
 bool Lexer::isWhitespace(const char c)
 {
-    return c == ' ' || c == '\t';
+    return c == ' ' || c == '\t' || c == '\n' || c == '\r';
 }
 
 std::string Lexer::readUntil(const std::string& line, size_t& i, const std::function<bool (char)>& endCondition)

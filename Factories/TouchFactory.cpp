@@ -1,6 +1,8 @@
 #include "TouchFactory.h"
 #include "../Commands/TouchCommand.h"
 
+static TouchFactory g_touchFactory;
+
 std::unique_ptr<ICommand> TouchFactory::create(const std::vector<Token>& arguments)
 {
     if (arguments.size() != 1)

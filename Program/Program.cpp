@@ -20,6 +20,12 @@ void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, 
         }
         catch (std::exception& e) { err << e.what() << "\n"; }
 
+        if (&inData == &std::cin && inData.eof())
+        {
+            inData.clear();
+            clearerr(stdin);
+        }
+
         if (inCmd.eof() && &inCmd == &std::cin)
         {
             inCmd.clear();

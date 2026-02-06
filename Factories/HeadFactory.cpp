@@ -12,7 +12,9 @@ std::unique_ptr<ICommand> HeadFactory::create(const std::vector<Token>& argument
     {
         if (arguments[0].getType() != TokenType::Option)
             throw SyntaxError("Nevalidan tip argumenta.");
-        n = std::stoi(arguments[0].getText());
+        if (arguments[0].getText()[0] != 'n')
+            throw SyntaxError("Nevalidna opcija.");
+        n = std::stoi(arguments[0].getText().substr(1));
     }
     if (arguments.size() > 1)
         in = createIn(arguments[1]);

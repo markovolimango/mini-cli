@@ -10,10 +10,13 @@ void HeadCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 
     std::string text, line;
     int i = 0;
-    while (i < m_n && std::getline(in, line))
+    while (std::getline(in, line))
     {
-        text.append(line);
-        text.push_back('\n');
+        if (i < m_n)
+        {
+            text.append(line);
+            text.push_back('\n');
+        }
         i++;
     }
     out << text;
