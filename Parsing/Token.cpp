@@ -16,8 +16,16 @@ Token::Token(const std::string& text) :
         m_type = TokenType::Quoted;
         break;
     case '-':
-        m_text = text.substr(1, text.size() - 1);
-        m_type = TokenType::Option;
+        if (text[1] != '"')
+        {
+            m_text = text.substr(1, text.size() - 1);
+            m_type = TokenType::Option;
+        }
+        else
+        {
+            m_text = text.substr(2, text.size() - 3);
+            m_type = TokenType::OptionQuoted;
+        }
         break;
     case '<':
         m_text = text.substr(1, text.size() - 1);
@@ -50,5 +58,6 @@ Token::Token(const std::string& text) :
 
 bool Token::isArgument() const
 {
-    return m_type == TokenType::Normal || m_type == TokenType::Quoted || m_type == TokenType::Option;
+    return m_type == TokenType::Normal || m_type == TokenType::Quoted || m_type == TokenType::Option || m_type ==
+        TokenType::OptionQuoted;
 }

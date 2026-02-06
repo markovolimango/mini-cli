@@ -7,19 +7,19 @@
 class BatchCommand : public IOutputCommand
 {
 public:
-    explicit BatchCommand(std::string filename);
+    explicit BatchCommand(std::shared_ptr<std::istream> in);
 
     void execute(std::istream& inDefault, std::ostream& outDefault) override;
 
 private:
-    std::string m_filename;
+    std::shared_ptr<std::istream> m_inCmd;
 };
 
 
-inline BatchCommand::BatchCommand(std::string filename) :
-    IOutputCommand("batch"),
-    m_filename(std::move(filename))
+inline BatchCommand::BatchCommand(std::shared_ptr<std::istream> in) :
+    IOutputCommand("batch")
 {
+    m_inCmd = in;
 }
 
 #endif

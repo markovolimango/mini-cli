@@ -4,8 +4,8 @@
 
 void BatchCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 {
+    auto& in = getInputStream(inDefault);
     auto& out = getOutputStream(outDefault);
-    auto ifs = std::ifstream(m_filename);
 
-    Program::run(ifs, inDefault, out, out);
+    Program::run(*m_inCmd, in, out, out);
 }

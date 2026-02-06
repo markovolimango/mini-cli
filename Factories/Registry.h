@@ -4,6 +4,7 @@
 #include <map>
 #include <memory>
 #include <string>
+#include "../Errors/Errors.h"
 
 class IFactory;
 
@@ -25,6 +26,8 @@ private:
 
 inline IFactory* Registry::getFactory(const std::string& name)
 {
+    if (!getInstance()->m_map.contains(name))
+        throw UnknownCommandError(name);
     return getInstance()->m_map[name];
 }
 

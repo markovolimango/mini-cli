@@ -36,6 +36,26 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
 
             tokens.emplace_back(text);
         }
+        else if (line[i] == '-')
+        {
+            std::string text;
+            text.push_back(line[i++]);
+
+            if (i >= line.length())
+                throw LexicalError("Prazan argument");
+
+            if (line[i] == '"')
+            {
+                text.push_back(line[i++]);
+                text.append(readUntil(line, i, [](const char c) { return c == '"'; }));
+                if (line[i] != '"')
+                    throw LexicalError("Nezatvoreni navodnici.");
+                text.push_back(line[i++]);
+            }
+            else
+                text.append(readUntil(line, i, [](const char c) { return isWhitespace(c); }));
+            tokens.emplace_back(text);
+        }
         else
         {
             tokens.emplace_back(readUntil(line, i, [](const char c) { return isWhitespace(c); }));

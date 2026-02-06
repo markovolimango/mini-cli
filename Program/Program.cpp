@@ -1,6 +1,6 @@
 #include "Program.h"
 #include "../Parsing/Parser.h"
-#include "Executor.h"
+#include "../Executor/Executor.h"
 #include <string>
 
 void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, std::ostream& err)
@@ -8,7 +8,7 @@ void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, 
     std::string line;
 
     if (&inCmd == &std::cin)
-        std::cout << "$ ";
+        std::cout << ICommand::getPrompt() << " ";
     while (std::getline(inCmd, line))
     {
         try
@@ -27,6 +27,6 @@ void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, 
         }
 
         if (&inCmd == &std::cin)
-            std::cout << "$ ";
+            std::cout << ICommand::getPrompt() << " ";
     }
 }

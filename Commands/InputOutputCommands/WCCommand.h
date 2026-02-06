@@ -18,9 +18,9 @@ private:
 };
 
 
-inline WCCommand::WCCommand(const bool countsWords, std::shared_ptr<std::istream> in) :
+inline WCCommand::WCCommand(const bool countWords, std::shared_ptr<std::istream> in) :
     IInputOutputCommand("wc"),
-    m_countWords(countsWords)
+    m_countWords(countWords)
 {
     m_in = in;
 }

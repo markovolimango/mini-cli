@@ -8,6 +8,7 @@ enum class TokenType
     Normal,
     Quoted,
     Option,
+    OptionQuoted,
     InRedirect,
     OutRedirectTrunc,
     OutRedirectApp,

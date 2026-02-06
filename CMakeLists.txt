@@ -22,10 +22,10 @@ add_executable(cli
         Commands/TouchCommand.h
         Commands/InputOutputCommands/WCCommand.cpp
         Commands/InputOutputCommands/WCCommand.h
-        Program/Executor.h
+        Executor/Executor.h
         Program/Program.cpp
         Program/Program.h
-        Program/Executor.cpp
+        Executor/Executor.cpp
         Parsing/Token.cpp
         Commands/OutputCommands/BatchCommand.cpp
         Commands/OutputCommands/BatchCommand.h
@@ -44,4 +44,28 @@ add_executable(cli
         Factories/WCFactory.cpp
         Factories/WCFactory.h
         Factories/Registry.cpp
+        Factories/BatchFactory.cpp
+        Factories/BatchFactory.h
+        Commands/ICommand.cpp
+        Commands/PromptCommand.cpp
+        Commands/PromptCommand.h
+        Factories/PromptFactory.cpp
+        Factories/PromptFactory.h
+        Commands/TruncateCommand.cpp
+        Commands/TruncateCommand.h
+        Factories/TruncateFactory.cpp
+        Factories/TruncateFactory.h
+        Commands/RmCommand.cpp
+        Commands/RmCommand.h
+        Factories/RMFactory.cpp
+        Factories/RMFactory.h
+        Factories/IFactory.cpp
+        Commands/InputOutputCommands/TRCommand.cpp
+        Commands/InputOutputCommands/TRCommand.h
+        Factories/TRFactory.cpp
+        Factories/TRFactory.h
+        Commands/InputOutputCommands/HeadCommand.cpp
+        Commands/InputOutputCommands/HeadCommand.h
+        Factories/HeadFactory.cpp
+        Factories/HeadFactory.h
 )

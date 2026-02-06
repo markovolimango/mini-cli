@@ -4,12 +4,6 @@
 #include <fstream>
 #include <utility>
 
-TouchCommand::TouchCommand(std::string filename) :
-    ICommand("touch"),
-    m_filename(std::move(filename))
-{
-}
-
 void TouchCommand::execute(std::istream& in, std::ostream& out)
 {
     if (std::filesystem::exists(m_filename))

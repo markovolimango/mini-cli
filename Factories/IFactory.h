@@ -16,6 +16,9 @@ public:
     virtual ~IFactory() = default;
 
     virtual std::unique_ptr<ICommand> create(const std::vector<Token>& arguments) = 0;
+
+protected:
+    static std::shared_ptr<std::istream> createIn(const Token& token);
 };
 
 #endif

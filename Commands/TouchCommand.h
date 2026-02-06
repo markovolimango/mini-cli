@@ -15,4 +15,11 @@ private:
     std::string m_filename;
 };
 
+
+inline TouchCommand::TouchCommand(std::string filename) :
+    ICommand("touch"),
+    m_filename(std::move(filename))
+{
+}
+
 #endif

@@ -18,14 +18,21 @@ public:
     virtual void redirectInput(std::shared_ptr<std::istream> inRedirect);
     virtual void redirectOutput(std::shared_ptr<std::ostream> outRedirect);
 
-protected:
-    std::string m_name;
+    static std::string getPrompt();
 
+protected:
     std::shared_ptr<std::istream> m_in;
     std::shared_ptr<std::ostream> m_out;
 
     std::istream& getInputStream(std::istream& inDefault) const;
     std::ostream& getOutputStream(std::ostream& outDefault) const;
+
+    static void setPrompt(std::string new_prompt);
+
+private:
+    static std::string prompt;
+
+    std::string m_name;
 };
 
 
@@ -53,5 +60,16 @@ inline std::ostream& ICommand::getOutputStream(std::ostream& outDefault) const
 {
     return m_out ? *m_out : outDefault;
 }
+
+inline std::string ICommand::getPrompt()
+{
+    return prompt;
+}
+
+inline void ICommand::setPrompt(std::string new_prompt)
+{
+    prompt = std::move(new_prompt);
+}
+
 
 #endif //CLI_COMMAND_H
