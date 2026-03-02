@@ -1,13 +1,13 @@
 #include "Token.h"
 #include <utility>
-#include "../Errors/Errors.h"
+#include "../Errors/SyntaxError.h"
 
 Token::Token(const std::string& text) :
     m_text(text),
     m_type(TokenType::Normal)
 {
     if (text.empty())
-        throw LexicalError("Prazan token");
+        throw SyntaxError("Prazan argument");
 
     switch (text[0])
     {
@@ -33,7 +33,7 @@ Token::Token(const std::string& text) :
         break;
     case '>':
         if (text.size() == 1)
-            throw LexicalError("Prazna redirekcija");
+            throw SyntaxError("Prazna redirekcija");
         if (text[1] == '>')
         {
             m_text = text.substr(2, text.size() - 2);

@@ -1,6 +1,6 @@
 #include "Parser.h"
 #include <fstream>
-#include "../Errors/Errors.h"
+#include "../Errors/Error.h"
 #include "../Factories/Registry.h"
 #include "../Factories/IFactory.h"
 

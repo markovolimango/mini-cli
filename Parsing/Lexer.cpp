@@ -1,6 +1,6 @@
 #include "Lexer.h"
 #include <functional>
-#include "../Errors/Errors.h"
+#include "../Errors/LexicalError.h"
 
 std::vector<Token> Lexer::tokenizeLine(const std::string& line)
 {
@@ -17,9 +17,9 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
         {
             std::string text;
             text.push_back(line[i++]);
-            text.append(readUntil(line, i, [](const char c) { return c == '"'; }));
-            if (line[i] != '"')
-                throw LexicalError("Nezatvoreni navodnici.");
+            text.append(readUntil(line, i, [](const char c) { return c == '"'; }, true));
+            if (i >= line.length())
+                throw LexicalError("Unclosed quotes", line, i);
             text.push_back(line[i++]);
             tokens.emplace_back(text);
         }
@@ -30,7 +30,7 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
 
             readUntil(line, i, [](const char c) { return !isWhitespace(c); });
             if (i >= line.length())
-                throw LexicalError("Prazna redirekcija");
+                throw LexicalError("Empty redirection", line, i);
 
             if (line[i] == '>')
             {
@@ -48,14 +48,14 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
             text.push_back(line[i++]);
 
             if (i >= line.length())
-                throw LexicalError("Prazan argument");
+                throw LexicalError("Empty option", line, i);
 
             if (line[i] == '"')
             {
                 text.push_back(line[i++]);
-                text.append(readUntil(line, i, [](const char c) { return c == '"'; }));
+                text.append(readUntil(line, i, [](const char c) { return c == '"'; }, true));
                 if (line[i] != '"')
-                    throw LexicalError("Nezatvoreni navodnici.");
+                    throw LexicalError("Unclosed quotes", line, i);
                 text.push_back(line[i++]);
             }
             else
@@ -76,10 +76,26 @@ bool Lexer::isWhitespace(const char c)
     return c == ' ' || c == '\t' || c == '\n' || c == '\r';
 }
 
-std::string Lexer::readUntil(const std::string& line, size_t& i, const std::function<bool (char)>& endCondition)
+bool Lexer::isLegal(const char c)
+{
+    return
+        isWhitespace(c) ||
+        'a' <= c && c <= 'z' ||
+        'A' <= c && c <= 'Z' ||
+        '0' <= c && c <= '9' ||
+        c == '_' || c == '.' ||
+        c == '-' || c == '|' || c == '<' || c == '>' || c == '\"';
+}
+
+std::string Lexer::readUntil(const std::string& line, size_t& i, const std::function<bool (char)>& endCondition,
+                             bool ignoreIllegal)
 {
     std::string text;
     while (i < line.size() && !endCondition(line[i]))
+    {
+        if (!ignoreIllegal && !isLegal(line[i]))
+            throw LexicalError("Illegal character.", line, i);
         text.push_back(line[i++]);
+    }
     return text;
 }

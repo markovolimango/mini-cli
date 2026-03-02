@@ -13,8 +13,8 @@ void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, 
     {
         try
         {
+            line = line.substr(0, 512);
             auto tokens = Lexer::tokenizeLine(line);
-            if (tokens.empty()) continue;
             auto pipeline = Parser::parseLine(tokens);
             Executor::executePipeline(pipeline, inData, out);
         }

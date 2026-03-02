@@ -9,7 +9,7 @@ add_executable(cli
         Parsing/Token.h
         Commands/InputOutputCommands/EchoCommand.cpp
         Commands/InputOutputCommands/EchoCommand.h
-        errors/Errors.h
+        Errors/Error.h
         Parsing/Lexer.cpp
         Parsing/Lexer.h
         Parsing/Parser.cpp
@@ -68,4 +68,11 @@ add_executable(cli
         Commands/InputOutputCommands/HeadCommand.h
         Factories/HeadFactory.cpp
         Factories/HeadFactory.h
+        Errors/LexicalError.cpp
+        Errors/LexicalError.h
+        Errors/UnknownCommandError.h
+        Errors/SyntaxError.cpp
+        Errors/SyntaxError.h
+        Errors/SemanticError.h
+        Errors/OSError.h
 )

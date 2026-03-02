@@ -4,7 +4,7 @@
 #include <map>
 #include <memory>
 #include <string>
-#include "../Errors/Errors.h"
+#include "../Errors/UnknownCommandError.h"
 
 class IFactory;
 

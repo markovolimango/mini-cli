@@ -5,7 +5,8 @@
 #include <memory>
 #include <ostream>
 #include <utility>
-#include "../Errors/Errors.h"
+#include "../Errors/SemanticError.h"
+#include "../Errors/OSError.h"
 
 class ICommand
 {

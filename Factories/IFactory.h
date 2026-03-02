@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include "Registry.h"
-#include "../Errors/Errors.h"
+#include "../Errors/SyntaxError.h"
 #include "../Commands/ICommand.h"
 #include "../Parsing/Token.h"
 

@@ -1,5 +1,5 @@
 #include "EchoCommand.h"
-#include "../../Errors/Errors.h"
+#include "../../Errors/Error.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
