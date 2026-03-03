@@ -7,8 +7,8 @@
 void TouchCommand::execute(std::istream& in, std::ostream& out)
 {
     if (std::filesystem::exists(m_filename))
-        throw SemanticError("Fajl \"" + m_filename + "\" vec postoji.");
+        throw SemanticError("The file \"" + m_filename + "\" already exists.");
 
     if (!std::ofstream(m_filename))
-        throw SemanticError("Fajl nije napravljen.");
+        throw OSError("Unable to create file.");
 }

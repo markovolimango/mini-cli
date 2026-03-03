@@ -7,11 +7,11 @@ std::shared_ptr<std::istream> IFactory::createIn(const Token& token)
     {
         in = std::make_shared<std::ifstream>(token.getText());
         if (!*in)
-            throw OSError("ayo");
+            throw OSError("Failed to open file");
     }
     else if (token.getType() == TokenType::Quoted)
         in = std::make_shared<std::istringstream>(token.getText());
     else
-        throw SyntaxError("Nevalidan tip argumenta.");
+        throw SyntaxError("Invalid argument type");
     return in;
 }

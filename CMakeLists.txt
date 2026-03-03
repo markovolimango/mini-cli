@@ -3,8 +3,7 @@ project(CLI)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(cli
-        main.cpp
+set(SRC
         Commands/ICommand.h
         Parsing/Token.h
         Commands/InputOutputCommands/EchoCommand.cpp
@@ -76,3 +75,27 @@ add_executable(cli
         Errors/SemanticError.h
         Errors/OSError.h
 )
+
+add_library(mini-cli OBJECT ${SRC})
+
+add_executable(main main.cpp $<TARGET_OBJECTS:mini-cli>)
+target_link_libraries(main mini-cli)
+
+
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/heads/main.zip
+)
+FetchContent_MakeAvailable(googletest)
+
+add_executable(tests
+        $<TARGET_OBJECTS:mini-cli>
+        Tests/CommandTests.cpp)
+target_link_libraries(tests
+        mini-cli
+        GTest::gtest_main
+)
+
+enable_testing()
+add_test(NAME AllTests COMMAND tests)

@@ -16,11 +16,6 @@ void EchoCommand::execute(std::istream& inDefault, std::ostream& outDefault)
         if (!in.eof())
             text.append("\n");
     }
-    //if (text[text.length() - 1] != '\n')
-    //    text.push_back('\n');
 
-    out << text;
-
-    if (&out == &std::cout && text.back() != '\n')
-        out << '\n';
+    out << text << "\n";
 }

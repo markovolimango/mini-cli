@@ -6,10 +6,10 @@ static WCFactory g_wcFactory;
 std::unique_ptr<ICommand> WCFactory::create(const std::vector<Token>& arguments)
 {
     if (arguments.empty() || arguments.size() > 2)
-        throw SyntaxError("Nevalidan broj argumenata.");
+        throw SyntaxError("Ivalid argument count");
 
     if (arguments[0].getType() != TokenType::Option)
-        throw SyntaxError("Nevalidan tip argumenta.");
+        throw SyntaxError("Ivalid argument type");
 
     bool countWords;
     if (arguments[0].getText() == "w")
@@ -17,7 +17,7 @@ std::unique_ptr<ICommand> WCFactory::create(const std::vector<Token>& arguments)
     else if (arguments[0].getText() == "c")
         countWords = false;
     else
-        throw SyntaxError("Nevalidna opcija" + arguments[0].getText() + ".");
+        throw SyntaxError("Invalid argument " + arguments[0].getText() + ".");
 
     std::shared_ptr<std::istream> in = nullptr;
     if (arguments.size() != 1)
