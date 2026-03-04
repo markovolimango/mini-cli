@@ -15,7 +15,8 @@ void HeadCommand::execute(std::istream& inDefault, std::ostream& outDefault)
         if (i < m_n)
         {
             text.append(line);
-            text.push_back('\n');
+            if (!in.eof())
+                text.push_back('\n');
         }
         i++;
     }

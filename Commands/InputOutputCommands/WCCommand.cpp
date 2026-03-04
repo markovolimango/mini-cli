@@ -11,7 +11,7 @@ void WCCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 
     const unsigned count = m_countWords ? countWords(in) : countChars(in);
 
-    out << count << "\n";
+    out << count;
 }
 
 unsigned WCCommand::countWords(std::istream& in)

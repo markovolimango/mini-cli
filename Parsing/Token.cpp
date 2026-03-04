@@ -28,26 +28,16 @@ Token::Token(const std::string& text) :
         }
         break;
     case '<':
-        m_text = text.substr(1, text.size() - 1);
-        m_type = TokenType::InRedirect;
+        m_text = text;
+        m_type = TokenType::Operator;
         break;
     case '>':
-        if (text.size() == 1)
-            throw SyntaxError("Prazna redirekcija");
-        if (text[1] == '>')
-        {
-            m_text = text.substr(2, text.size() - 2);
-            m_type = TokenType::OutRedirectApp;
-        }
-        else
-        {
-            m_text = text.substr(1, text.size() - 1);
-            m_type = TokenType::OutRedirectTrunc;
-        }
+        m_text = text;
+        m_type = TokenType::Operator;
         break;
     case '|':
-        m_text = "";
-        m_type = TokenType::Pipe;
+        m_text = text;
+        m_type = TokenType::Operator;
         break;
     default:
         m_text = text;
@@ -58,6 +48,5 @@ Token::Token(const std::string& text) :
 
 bool Token::isArgument() const
 {
-    return m_type == TokenType::Normal || m_type == TokenType::Quoted || m_type == TokenType::Option || m_type ==
-        TokenType::OptionQuoted;
+    return m_type != TokenType::Operator;
 }

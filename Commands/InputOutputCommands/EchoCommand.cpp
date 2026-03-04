@@ -14,8 +14,8 @@ void EchoCommand::execute(std::istream& inDefault, std::ostream& outDefault)
     {
         text.append(line);
         if (!in.eof())
-            text.append("\n");
+            text.push_back('\n');
     }
 
-    out << text << "\n";
+    out << text;
 }

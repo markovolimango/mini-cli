@@ -18,7 +18,7 @@ void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, 
             auto pipeline = Parser::parseLine(tokens);
             Executor::executePipeline(pipeline, inData, out);
         }
-        catch (std::exception& e) { err << e.what(); }
+        catch (std::exception& e) { err << e.what() << "\n"; }
 
         if (&inData == &std::cin && inData.eof())
         {
@@ -33,6 +33,6 @@ void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, 
         }
 
         if (&inCmd == &std::cin)
-            std::cout << ICommand::getPrompt() << " ";
+            std::cout << "\n" << ICommand::getPrompt() << " ";
     }
 }

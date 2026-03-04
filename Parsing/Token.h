@@ -9,10 +9,7 @@ enum class TokenType
     Quoted,
     Option,
     OptionQuoted,
-    InRedirect,
-    OutRedirectTrunc,
-    OutRedirectApp,
-    Pipe
+    Operator
 };
 
 class Token
@@ -20,10 +17,10 @@ class Token
 public:
     explicit Token(const std::string& text);
 
-    TokenType getType() const;
-    const std::string& getText() const;
+    [[nodiscard]] TokenType getType() const;
+    [[nodiscard]] const std::string& getText() const;
 
-    bool isArgument() const;
+    [[nodiscard]] bool isArgument() const;
 
 private:
     std::string m_text;

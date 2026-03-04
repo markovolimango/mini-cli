@@ -23,25 +23,6 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
             text.push_back(line[i++]);
             tokens.emplace_back(text);
         }
-        else if (line[i] == '<' || line[i] == '>')
-        {
-            std::string text;
-            text.push_back(line[i++]);
-
-            readUntil(line, i, [](const char c) { return !isWhitespace(c); });
-            if (i >= line.length())
-                throw LexicalError("Empty redirection", line, i);
-
-            if (line[i] == '>')
-            {
-                text.push_back(line[i++]);
-                readUntil(line, i, [](const char c) { return !isWhitespace(c); });
-            }
-
-            text.append(readUntil(line, i, [](const char c) { return isWhitespace(c); }));
-
-            tokens.emplace_back(text);
-        }
         else if (line[i] == '-')
         {
             std::string text;
@@ -60,6 +41,14 @@ std::vector<Token> Lexer::tokenizeLine(const std::string& line)
             }
             else
                 text.append(readUntil(line, i, [](const char c) { return isWhitespace(c); }));
+            tokens.emplace_back(text);
+        }
+        else if (isOperator(line[i]))
+        {
+            std::string text;
+            text.push_back(line[i++]);
+            if (text == ">" && i < line.length() && line[i] == '>')
+                text.push_back(line[i++]);
             tokens.emplace_back(text);
         }
         else
@@ -83,8 +72,13 @@ bool Lexer::isLegal(const char c)
         'a' <= c && c <= 'z' ||
         'A' <= c && c <= 'Z' ||
         '0' <= c && c <= '9' ||
-        c == '_' || c == '.' ||
+        c == '_' || c == '.' || c == '-' ||
         c == '-' || c == '|' || c == '<' || c == '>' || c == '\"';
+}
+
+bool Lexer::isOperator(char c)
+{
+    return c == '|' || c == '>' || c == '<';
 }
 
 std::string Lexer::readUntil(const std::string& line, size_t& i, const std::function<bool (char)>& endCondition,

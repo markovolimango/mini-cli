@@ -19,16 +19,28 @@ Pipeline Parser::parseLine(const std::vector<Token>& tokens)
         while (i < tokens.size())
         {
             const auto& tok = tokens[i++];
-            if (tok.getType() == TokenType::Pipe)
+            if (tok.getType() == TokenType::Operator && tok.getText() == "|")
                 break;
             if (tok.isArgument())
                 arguments.push_back(tok);
-            else if (tok.getType() == TokenType::InRedirect)
-                inRedirect = std::make_shared<std::ifstream>(tok.getText());
-            else if (tok.getType() == TokenType::OutRedirectTrunc)
-                outRedirect = std::make_shared<std::ofstream>(tok.getText());
-            else if (tok.getType() == TokenType::OutRedirectApp)
-                outRedirect = std::make_shared<std::ofstream>(tok.getText(), std::ios::app);
+            else if (tok.getType() == TokenType::Operator && tok.getText() == "<")
+            {
+                if (i >= tokens.size())
+                    throw SyntaxError("Empty redirection");
+                inRedirect = std::make_shared<std::ifstream>(tokens[i++].getText());
+            }
+            else if (tok.getType() == TokenType::Operator && tok.getText() == ">")
+            {
+                if (i >= tokens.size())
+                    throw SyntaxError("Empty redirection");
+                outRedirect = std::make_shared<std::ofstream>(tokens[i++].getText());
+            }
+            else if (tok.getType() == TokenType::Operator && tok.getText() == ">>")
+            {
+                if (i >= tokens.size())
+                    throw SyntaxError("Empty redirection");
+                outRedirect = std::make_shared<std::ofstream>(tokens[i++].getText(), std::ios::app);
+            }
         }
 
         auto command = std::move(Registry::getFactory(name)->create(arguments));

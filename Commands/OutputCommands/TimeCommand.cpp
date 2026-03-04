@@ -8,5 +8,5 @@ void TimeCommand::execute(std::istream& inDefault, std::ostream& outDefault)
 
     auto now = std::chrono::system_clock::now();
     const std::string time = std::format("{:%T}", now);
-    out << time << '\n';
+    out << time;
 }
