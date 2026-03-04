@@ -3,7 +3,7 @@
 #include <iostream>
 #include <regex>
 
-void TRCommand::execute(std::istream& inDefault, std::ostream& outDefault)
+void TRCommand::execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err)
 {
     auto& in = getInputStream(inDefault);
     auto& out = getOutputStream(outDefault);

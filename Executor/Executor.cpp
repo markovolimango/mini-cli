@@ -2,7 +2,8 @@
 #include <fstream>
 #include <sstream>
 
-void Executor::executePipeline(const Pipeline& pipeline, std::istream& inDefault, std::ostream& outDefault)
+void Executor::executePipeline(const Pipeline& pipeline, std::istream& inDefault, std::ostream& outDefault,
+                               std::ostream& err)
 {
     std::string inString;
     for (size_t i = 0; i < pipeline.commandCalls.size(); i++)
@@ -22,7 +23,7 @@ void Executor::executePipeline(const Pipeline& pipeline, std::istream& inDefault
         if (i < pipeline.commandCalls.size() - 1)
             command->redirectOutput(outStream);
 
-        command->execute(inDefault, outDefault);
+        command->execute(inDefault, outDefault, err);
 
         inString = outStream->str();
     }

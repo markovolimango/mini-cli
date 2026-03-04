@@ -14,7 +14,7 @@ public:
     explicit ICommand(std::string name);
     virtual ~ICommand() = default;
 
-    virtual void execute(std::istream& inDefault, std::ostream& outDefault) = 0;
+    virtual void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) = 0;
 
     virtual void redirectInput(std::shared_ptr<std::istream> inRedirect);
     virtual void redirectOutput(std::shared_ptr<std::ostream> outRedirect);

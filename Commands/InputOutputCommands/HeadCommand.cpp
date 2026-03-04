@@ -1,6 +1,6 @@
 #include "HeadCommand.h"
 
-void HeadCommand::execute(std::istream& inDefault, std::ostream& outDefault)
+void HeadCommand::execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err)
 {
     if (m_n < 0)
         throw SemanticError("N ne sme biti negativan.");

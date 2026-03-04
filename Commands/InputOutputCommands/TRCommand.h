@@ -10,7 +10,7 @@ class TRCommand : public IInputOutputCommand
 public:
     explicit TRCommand(std::shared_ptr<std::istream> in, std::string what, std::string with);
 
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 
 private:
     std::string m_what;

@@ -9,7 +9,7 @@ class BatchCommand : public IOutputCommand
 public:
     explicit BatchCommand(std::shared_ptr<std::istream> in);
 
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 
 private:
     std::shared_ptr<std::istream> m_inCmd;

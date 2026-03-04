@@ -2,7 +2,7 @@
 #include <chrono>
 #include <format>
 
-void DateCommand::execute(std::istream& inDefault, std::ostream& outDefault)
+void DateCommand::execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err)
 {
     std::ostream& out = getOutputStream(outDefault);
 

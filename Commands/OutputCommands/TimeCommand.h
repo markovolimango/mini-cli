@@ -7,7 +7,7 @@ class TimeCommand : public IOutputCommand
 {
 public:
     explicit TimeCommand();
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 };
 
 inline TimeCommand::TimeCommand() :

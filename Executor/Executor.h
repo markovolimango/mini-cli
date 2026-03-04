@@ -7,7 +7,7 @@
 class Executor
 {
 public:
-    static void executePipeline(const Pipeline& pipeline, std::istream& inDefault, std::ostream& outDefault);
+    static void executePipeline(const Pipeline& pipeline, std::istream& inDefault, std::ostream& outDefault, std::ostream& err);
 };
 
 #endif

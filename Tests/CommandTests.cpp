@@ -14,7 +14,7 @@ TEST(CommandTests, EchoCommandTest)
     std::ostringstream out;
 
     auto echo = EchoCommand(in);
-    echo.execute(std::cin, out);
+    echo.execute(std::cin, out, TODO);
 
     EXPECT_EQ(out.str(), "Hello World!\n");
 }
@@ -28,7 +28,7 @@ TEST(CommandTests, HeadCommandTest)
     std::ostringstream out;
 
     auto head = HeadCommand(1, in);
-    head.execute(std::cin, out);
+    head.execute(std::cin, out, TODO);
 
     EXPECT_EQ(out.str(), "Hello World!\n");
 }
@@ -43,7 +43,7 @@ TEST(CommandTests, WCCommandTest)
     std::ostringstream out;
 
     auto wc = WCCommand(true, in);
-    wc.execute(std::cin, out);
+    wc.execute(std::cin, out, TODO);
 
     EXPECT_EQ(out.str(), "36\n");
 }
@@ -57,7 +57,7 @@ TEST(CommandTests, TRCommandTest)
     std::ostringstream out;
 
     auto tr = TRCommand(in, " ", "");
-    tr.execute(std::cin, out);
+    tr.execute(std::cin, out, TODO);
 
     EXPECT_EQ(
         out.str(),
@@ -75,7 +75,7 @@ TEST(CommandTests, BatchCommandTest)
     std::ostringstream out;
 
     auto batch = BatchCommand(in);
-    batch.execute(std::cin, out);
+    batch.execute(std::cin, out, TODO);
 
     EXPECT_EQ(
         out.str(),

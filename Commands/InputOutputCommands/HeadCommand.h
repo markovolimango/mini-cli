@@ -7,7 +7,7 @@ class HeadCommand : public IInputOutputCommand
 {
 public:
     explicit HeadCommand(int n, std::shared_ptr<std::istream> in);
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 
 private:
     const int m_n;

@@ -2,7 +2,7 @@
 #include <chrono>
 #include <format>
 
-void TimeCommand::execute(std::istream& inDefault, std::ostream& outDefault)
+void TimeCommand::execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err)
 {
     auto& out = getOutputStream(outDefault);
 

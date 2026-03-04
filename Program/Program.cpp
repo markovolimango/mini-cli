@@ -16,9 +16,9 @@ void Program::run(std::istream& inCmd, std::istream& inData, std::ostream& out, 
             line = line.substr(0, 512);
             auto tokens = Lexer::tokenizeLine(line);
             auto pipeline = Parser::parseLine(tokens);
-            Executor::executePipeline(pipeline, inData, out);
+            Executor::executePipeline(pipeline, inData, out, err);
         }
-        catch (std::exception& e) { err << e.what() << "\n"; }
+        catch (std::exception& e) { err << e.what(); }
 
         if (&inData == &std::cin && inData.eof())
         {

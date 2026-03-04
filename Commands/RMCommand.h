@@ -7,7 +7,7 @@ class RMCommand : public ICommand
 {
 public:
     explicit RMCommand(std::string filename);
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 
 private:
     std::string m_filename;

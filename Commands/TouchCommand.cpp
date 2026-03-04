@@ -4,7 +4,7 @@
 #include <fstream>
 #include <utility>
 
-void TouchCommand::execute(std::istream& in, std::ostream& out)
+void TouchCommand::execute(std::istream& in, std::ostream& out, std::ostream& err)
 {
     if (std::filesystem::exists(m_filename))
         throw SemanticError("The file \"" + m_filename + "\" already exists.");

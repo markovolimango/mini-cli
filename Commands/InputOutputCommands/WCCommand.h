@@ -8,7 +8,7 @@ class WCCommand : public IInputOutputCommand
 public:
     explicit WCCommand(bool countWords, std::shared_ptr<std::istream> in);
 
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 
 private:
     bool m_countWords;

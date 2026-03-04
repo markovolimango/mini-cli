@@ -2,7 +2,7 @@
 #include <filesystem>
 #include <fstream>
 
-void TruncateCommand::execute(std::istream& inDefault, std::ostream& outDefault)
+void TruncateCommand::execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err)
 {
     if (!std::filesystem::exists(m_filename))
         throw SemanticError("Fajl \"" + m_filename + "\" ne postoji.");

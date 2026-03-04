@@ -9,7 +9,7 @@ class PromptCommand : public ICommand
 public:
     PromptCommand(std::string prompt);
 
-    void execute(std::istream& in, std::ostream& out) override;
+    void execute(std::istream& in, std::ostream& out, std::ostream& err) override;
 
 private:
     std::string m_prompt;
@@ -22,7 +22,7 @@ inline PromptCommand::PromptCommand(std::string prompt) :
 {
 }
 
-inline void PromptCommand::execute(std::istream& in, std::ostream& out)
+inline void PromptCommand::execute(std::istream& in, std::ostream& out, std::ostream& err)
 {
     setPrompt(m_prompt);
 }

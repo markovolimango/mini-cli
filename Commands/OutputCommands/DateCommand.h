@@ -7,7 +7,7 @@ class DateCommand : public IOutputCommand
 {
 public:
     explicit DateCommand();
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 };
 
 

@@ -8,7 +8,7 @@ class EchoCommand : public IInputOutputCommand
 public:
     explicit EchoCommand(std::shared_ptr<std::istream> in);
 
-    void execute(std::istream& inDefault, std::ostream& outDefault) override;
+    void execute(std::istream& inDefault, std::ostream& outDefault, std::ostream& err) override;
 };
 
 
