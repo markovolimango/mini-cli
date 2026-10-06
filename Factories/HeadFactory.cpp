@@ -5,7 +5,7 @@ static HeadFactory g_headFactory;
 
 std::unique_ptr<ICommand> HeadFactory::create(const std::vector<Token>& arguments)
 {
-    int n;
+    int n = 10;
     std::shared_ptr<std::istream> in = nullptr;
 
     if (!arguments.empty())

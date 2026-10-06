@@ -54,8 +54,8 @@ set(SRC
         Commands/TruncateCommand.h
         Factories/TruncateFactory.cpp
         Factories/TruncateFactory.h
-        Commands/RmCommand.cpp
-        Commands/RmCommand.h
+        Commands/RMCommand.cpp
+        Commands/RMCommand.h
         Factories/RMFactory.cpp
         Factories/RMFactory.h
         Factories/IFactory.cpp
@@ -91,7 +91,10 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(tests
         $<TARGET_OBJECTS:mini-cli>
-        Tests/CommandTests.cpp)
+        Tests/CommandTests.cpp
+        Tests/LexerTests.cpp
+        Tests/ParserTests.cpp
+        Tests/ProgramTests.cpp)
 target_link_libraries(tests
         mini-cli
         GTest::gtest_main
